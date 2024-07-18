@@ -1,3 +1,4 @@
+import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/components/chat_button.dart';
 import 'package:chat_app/components/chat_text_field.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,7 +12,21 @@ class LoginPage extends StatelessWidget {
 
   LoginPage({super.key, required this.onRegisterTap});
 
-  void login() {}
+  void login(BuildContext context) async {
+    final authService = AuthService();
+
+    try {
+      await authService.signInWithEmailPassword(
+          _emailController.text, _passwordController.text);
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(e.toString()),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +82,7 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               ChatButton(
-                onTap: login,
+                onTap: () => login(context),
                 label: 'login',
                 padding: 15,
                 margin: 0,
