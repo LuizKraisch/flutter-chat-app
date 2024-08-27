@@ -8,7 +8,9 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.tertiary),
         title: Text(
           'settings',
           style: GoogleFonts.poppins(

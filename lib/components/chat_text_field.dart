@@ -12,7 +12,7 @@ class ChatTextField extends StatelessWidget {
     required this.controller,
     required this.obscureText,
     required this.hintText,
-    required this.padding,
+    this.padding = 0.0,
   });
 
   @override
@@ -39,7 +39,7 @@ class ChatTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
               width: 2,
-              color: Theme.of(context).colorScheme.tertiary,
+              color: Theme.of(context).colorScheme.inversePrimary,
             ),
           ),
           fillColor: Theme.of(context).colorScheme.secondary,
@@ -49,7 +49,7 @@ class ChatTextField extends StatelessWidget {
             textStyle: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w500,
-              color: Theme.of(context).colorScheme.tertiaryFixed,
+              color: Theme.of(context).colorScheme.inversePrimary,
             ),
           ),
         ),

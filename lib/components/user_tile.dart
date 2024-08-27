@@ -16,7 +16,7 @@ class UserTile extends StatelessWidget {
         child: Container(
           height: 50,
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
+            color: Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Row(
@@ -25,7 +25,8 @@ class UserTile extends StatelessWidget {
                 width: 10,
               ),
               Icon(
-                Icons.person,
+                Icons.circle,
+                size: 15.0,
                 color: Theme.of(context).colorScheme.tertiary,
               ),
               const SizedBox(
@@ -36,7 +37,7 @@ class UserTile extends StatelessWidget {
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
                     fontSize: 15,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w500,
                     color: Theme.of(context).colorScheme.tertiary,
                   ),
                 ),
