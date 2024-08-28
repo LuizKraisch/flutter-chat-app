@@ -5,6 +5,7 @@ class ChatTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final TextEditingController controller;
+  final FocusNode? focusNode;
   final double padding;
 
   const ChatTextField({
@@ -12,6 +13,7 @@ class ChatTextField extends StatelessWidget {
     required this.controller,
     required this.obscureText,
     required this.hintText,
+    this.focusNode,
     this.padding = 0.0,
   });
 
@@ -20,8 +22,10 @@ class ChatTextField extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: padding),
       child: TextField(
+        cursorColor: Theme.of(context).colorScheme.tertiary,
         obscureText: obscureText,
         controller: controller,
+        focusNode: focusNode,
         style: GoogleFonts.poppins(
           textStyle: TextStyle(
             fontWeight: FontWeight.w500,
