@@ -1,13 +1,17 @@
 import 'package:chat_app/auth/auth_date.dart';
 import 'package:chat_app/firebase_options.dart';
-import 'package:chat_app/themes/dark_mode.dart';
+import 'package:chat_app/themes/theme_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const ChatApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => ThemeProvider(),
+    child: const ChatApp(),
+  ));
 }
 
 class ChatApp extends StatelessWidget {
@@ -18,7 +22,7 @@ class ChatApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const AuthGate(),
-      theme: darkMode,
+      theme: Provider.of<ThemeProvider>(context).themeData,
     );
   }
 }
