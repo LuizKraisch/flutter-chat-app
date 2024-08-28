@@ -78,6 +78,7 @@ class HomePage extends StatelessWidget {
     if (userData["email"] != _authService.getCurrentUser()!.email) {
       return UserTile(
         userName: userData["email"],
+        userID: userData["uid"],
         onTap: () {
           Navigator.push(
             context,

@@ -22,8 +22,8 @@ class ChatService {
     final Timestamp timestamp = Timestamp.now();
 
     Message newMessage = Message(
-      senderID: currentUserEmail,
-      senderEmail: currentUserID,
+      senderID: currentUserID,
+      senderEmail: currentUserEmail,
       receiverID: receiverID,
       message: message,
       timestamp: timestamp,
@@ -49,7 +49,7 @@ class ChatService {
         .collection("chat_rooms")
         .doc(chatRoomID)
         .collection("messages")
-        .orderBy("timestamp", descending: true)
+        .orderBy("timestamp", descending: false)
         .snapshots();
   }
 }
