@@ -9,7 +9,7 @@ class DateHelper {
         dateTime.day == now.day) {
       return DateFormat('h:mm a').format(dateTime);
     } else {
-      return DateFormat('MMMM d, y').format(dateTime);
+      return DateFormat('MMMM d, y h:mm a').format(dateTime);
     }
   }
 }
