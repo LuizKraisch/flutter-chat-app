@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage extends StatelessWidget {
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
@@ -19,7 +20,7 @@ class RegisterPage extends StatelessWidget {
 
     if (_passwordController.text == _confirmPasswordController.text) {
       try {
-        await authService.signUpWithEmailPassword(
+        await authService.signUpWithEmailPassword(_nameController.text,
             _emailController.text, _passwordController.text);
       } catch (e) {
         showDialog(
@@ -78,6 +79,13 @@ class RegisterPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 50),
+              ChatTextField(
+                controller: _nameController,
+                hintText: 'your name',
+                obscureText: false,
+                padding: 0,
+              ),
+              const SizedBox(height: 20),
               ChatTextField(
                 controller: _emailController,
                 hintText: 'your email',

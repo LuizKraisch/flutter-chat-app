@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         iconTheme: IconThemeData(color: Theme.of(context).colorScheme.tertiary),
         title: Text(
-          'home',
+          'chats',
           style: GoogleFonts.poppins(
             textStyle: TextStyle(
               fontSize: 18,
@@ -77,8 +77,8 @@ class HomePage extends StatelessWidget {
       Map<String, dynamic> userData, BuildContext context) {
     if (userData["email"] != _authService.getCurrentUser()!.email) {
       return UserTile(
-        userName: userData["email"],
-        userID: userData["uid"],
+        userName: userData["name"],
+        userEmail: userData["email"],
         onTap: () {
           Navigator.push(
             context,

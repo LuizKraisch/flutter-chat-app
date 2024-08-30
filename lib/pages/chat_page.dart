@@ -1,3 +1,4 @@
+import 'package:chat_app/components/chat_bubble.dart';
 import 'package:chat_app/components/chat_text_field.dart';
 import 'package:chat_app/helpers/date_helper.dart';
 import 'package:chat_app/services/auth/auth_service.dart';
@@ -25,7 +26,6 @@ class _ChatPageState extends State<ChatPage> {
 
   final ChatService _chatService = ChatService();
   final AuthService _authService = AuthService();
-  final DateHelper _dateHelper = DateHelper();
 
   FocusNode chatFocusNode = FocusNode();
 
@@ -143,48 +143,8 @@ class _ChatPageState extends State<ChatPage> {
       crossAxisAlignment:
           isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: [
-        Container(
-          constraints: const BoxConstraints(maxWidth: 300),
-          padding: const EdgeInsets.all(10.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: isCurrentUser
-                ? Theme.of(context).colorScheme.tertiary.withOpacity(0.3)
-                : Theme.of(context).colorScheme.secondary,
-          ),
-          margin: const EdgeInsets.only(bottom: 12.0),
-          child: Column(
-            crossAxisAlignment: isCurrentUser
-                ? CrossAxisAlignment.end
-                : CrossAxisAlignment.start,
-            children: [
-              Text(
-                data["message"],
-                textAlign: isCurrentUser ? TextAlign.end : TextAlign.start,
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                    color: Theme.of(context).colorScheme.tertiary,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 2.0),
-              Text(
-                _dateHelper.formatDatetime(data["timestamp"].toDate()),
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w300,
-                    color: isCurrentUser
-                        ? Theme.of(context).colorScheme.tertiaryContainer
-                        : Theme.of(context).colorScheme.inversePrimary,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
+        ChatBubble(
+            isCurrentUser: isCurrentUser, data: data, messageId: doc.id, userId: data["senderID"]),
       ],
     );
   }

@@ -3,13 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 class UserTile extends StatelessWidget {
   final String userName;
-  final String userID;
+  final String userEmail;
   final void Function()? onTap;
 
   const UserTile(
       {super.key,
       required this.userName,
-      required this.userID,
+      required this.userEmail,
       required this.onTap});
 
   @override
@@ -45,7 +45,7 @@ class UserTile extends StatelessWidget {
                     ),
                     const SizedBox(height: 1.0),
                     Text(
-                      userID,
+                      userEmail,
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
                           fontSize: 10,

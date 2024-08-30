@@ -44,7 +44,7 @@ class ChatDrawer extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 25.0),
                 child: ListTile(
                   title: Text(
-                    "home",
+                    "chats",
                     style: GoogleFonts.poppins(
                       textStyle: TextStyle(
                         fontSize: 18,
@@ -54,7 +54,7 @@ class ChatDrawer extends StatelessWidget {
                     ),
                   ),
                   leading: Icon(
-                    Icons.home,
+                    Icons.forum,
                     color: Theme.of(context).colorScheme.tertiary,
                   ),
                   onTap: () {
