@@ -1,7 +1,7 @@
+import 'package:chat_app/components/chat_text.dart';
 import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/components/chat_button.dart';
 import 'package:chat_app/components/chat_text_field.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -46,25 +46,17 @@ class LoginPage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.tertiary,
               ),
               const SizedBox(height: 10),
-              Text(
-                'welcome back!',
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.tertiary,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+              ChatText(
+                text: 'welcome back!',
+                size: 25,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.tertiary,
               ),
-              Text(
-                "it's good to see you again.",
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.tertiary,
-                    fontSize: 18,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
+              ChatText(
+                text: "it's good to see you again.",
+                size: 18,
+                fontWeight: FontWeight.normal,
+                color: Theme.of(context).colorScheme.tertiary,
               ),
               const SizedBox(height: 50),
               ChatTextField(
@@ -91,26 +83,18 @@ class LoginPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'not a member? ',
-                    style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        fontSize: 15,
-                        color: Theme.of(context).colorScheme.tertiary,
-                      ),
-                    ),
+                  ChatText(
+                    text: 'not a member? ',
+                    size: 15,
+                    color: Theme.of(context).colorScheme.tertiary,
                   ),
                   GestureDetector(
                     onTap: onRegisterTap,
-                    child: Text(
-                      'register now',
-                      style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.tertiary,
-                        ),
-                      ),
+                    child: ChatText(
+                      text: 'not a member? ',
+                      size: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.tertiary,
                     ),
                   ),
                 ],

@@ -1,8 +1,8 @@
+import 'package:chat_app/components/chat_text.dart';
 import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/components/chat_button.dart';
 import 'package:chat_app/components/chat_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage extends StatelessWidget {
   final TextEditingController _nameController = TextEditingController();
@@ -58,25 +58,17 @@ class RegisterPage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.tertiary,
               ),
               const SizedBox(height: 10),
-              Text(
-                "let's create your account!",
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.tertiary,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+              ChatText(
+                text: "let's create your account!",
+                size: 25,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.tertiary,
               ),
-              Text(
-                "we're so happy to have you here.",
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.tertiary,
-                    fontSize: 18,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
+              ChatText(
+                text: "we're so happy to have you here.",
+                size: 18,
+                fontWeight: FontWeight.normal,
+                color: Theme.of(context).colorScheme.tertiary,
               ),
               const SizedBox(height: 50),
               ChatTextField(
@@ -117,26 +109,18 @@ class RegisterPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'already have an account? ',
-                    style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        fontSize: 15,
-                        color: Theme.of(context).colorScheme.tertiary,
-                      ),
-                    ),
+                  ChatText(
+                    text: 'already have an account? ',
+                    size: 15,
+                    color: Theme.of(context).colorScheme.tertiary,
                   ),
                   GestureDetector(
                     onTap: onLoginTap,
-                    child: Text(
-                      'back to login',
-                      style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.tertiary,
-                        ),
-                      ),
+                    child: ChatText(
+                      text: 'back to login',
+                      size: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.tertiary,
                     ),
                   ),
                 ],

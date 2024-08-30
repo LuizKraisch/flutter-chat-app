@@ -1,5 +1,5 @@
+import 'package:chat_app/components/chat_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ChatButton extends StatelessWidget {
   final void Function()? onTap;
@@ -27,14 +27,11 @@ class ChatButton extends StatelessWidget {
         padding: EdgeInsets.all(padding),
         margin: EdgeInsets.symmetric(horizontal: margin),
         child: Center(
-          child: Text(
-            label,
-            style: GoogleFonts.poppins(
-              textStyle: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+          child: ChatText(
+            text: label,
+            size: 15,
+            fontWeight: FontWeight.w500,
+            color: Theme.of(context).colorScheme.surface,
           ),
         ),
       ),

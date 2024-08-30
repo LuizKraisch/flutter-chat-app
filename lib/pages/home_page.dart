@@ -1,10 +1,10 @@
 import 'package:chat_app/components/chat_drawer.dart';
+import 'package:chat_app/components/chat_text.dart';
 import 'package:chat_app/components/user_tile.dart';
 import 'package:chat_app/pages/chat_page.dart';
 import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/services/chat/chat_service.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -18,15 +18,11 @@ class HomePage extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         iconTheme: IconThemeData(color: Theme.of(context).colorScheme.tertiary),
-        title: Text(
-          'chats',
-          style: GoogleFonts.poppins(
-            textStyle: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: Theme.of(context).colorScheme.tertiary,
-            ),
-          ),
+        title: ChatText(
+          text: 'chats',
+          size: 18,
+          fontWeight: FontWeight.w600,
+          color: Theme.of(context).colorScheme.tertiary,
         ),
       ),
       drawer: const ChatDrawer(),
@@ -39,28 +35,20 @@ class HomePage extends StatelessWidget {
       stream: _chatService.getUserStream(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Text(
-            'error',
-            style: GoogleFonts.poppins(
-              textStyle: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
+          return ChatText(
+            text: 'error',
+            size: 18,
+            fontWeight: FontWeight.w600,
+            color: Theme.of(context).colorScheme.primary,
           );
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text(
-            'loading...',
-            style: GoogleFonts.poppins(
-              textStyle: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
+          return ChatText(
+            text: 'loading...',
+            size: 18,
+            fontWeight: FontWeight.w600,
+            color: Theme.of(context).colorScheme.primary,
           );
         }
 

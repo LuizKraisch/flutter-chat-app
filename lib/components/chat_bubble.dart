@@ -1,7 +1,7 @@
+import 'package:chat_app/components/chat_text.dart';
 import 'package:chat_app/helpers/date_helper.dart';
 import 'package:chat_app/services/chat/chat_service.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ChatBubble extends StatelessWidget {
   final Map<String, dynamic> data;
@@ -31,15 +31,11 @@ class ChatBubble extends StatelessWidget {
                   Icons.flag,
                   color: Theme.of(context).colorScheme.tertiary,
                 ),
-                title: Text(
-                  'report',
-                  style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.tertiary,
-                    ),
-                  ),
+                title: ChatText(
+                  text: 'report',
+                  size: 15,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.tertiary,
                 ),
                 onTap: () {
                   Navigator.pop(context);
@@ -51,34 +47,33 @@ class ChatBubble extends StatelessWidget {
                   Icons.block,
                   color: Theme.of(context).colorScheme.tertiary,
                 ),
-                title: Text(
-                  'block user',
-                  style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.tertiary,
-                    ),
-                  ),
+                title: ChatText(
+                  text: 'block user',
+                  size: 15,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.tertiary,
                 ),
                 onTap: () {},
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Divider(
+                  color:
+                      Theme.of(context).colorScheme.tertiary.withOpacity(0.3),
+                ),
+              ),
               ListTile(
                 leading: Icon(
-                  Icons.cancel,
+                  Icons.close,
                   color: Theme.of(context).colorScheme.tertiary,
                 ),
-                title: Text(
-                  'cancel',
-                  style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.tertiary,
-                    ),
-                  ),
+                title: ChatText(
+                  text: 'close',
+                  size: 15,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.tertiary,
                 ),
-                onTap: () {},
+                onTap: () => Navigator.pop(context),
               )
             ],
           ),
@@ -91,38 +86,26 @@ class ChatBubble extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(
-          'report message',
-          style: GoogleFonts.poppins(
-            textStyle: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w500,
-              color: Theme.of(context).colorScheme.surface,
-            ),
-          ),
+        title: ChatText(
+          text: 'report message',
+          size: 15,
+          fontWeight: FontWeight.w500,
+          color: Theme.of(context).colorScheme.surface,
         ),
-        content: Text(
-          'are you sure you want to report this message?',
-          style: GoogleFonts.poppins(
-            textStyle: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w500,
-              color: Theme.of(context).colorScheme.surface,
-            ),
-          ),
+        content: ChatText(
+          text: 'are you sure you want to report this message?',
+          size: 15,
+          fontWeight: FontWeight.w500,
+          color: Theme.of(context).colorScheme.surface,
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text(
-              'no',
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  color: Theme.of(context).colorScheme.surface,
-                ),
-              ),
+            child: ChatText(
+              text: 'no',
+              size: 15,
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).colorScheme.surface,
             ),
           ),
           TextButton(
@@ -131,28 +114,20 @@ class ChatBubble extends StatelessWidget {
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(
-                    'message reported',
-                    style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).colorScheme.tertiary,
-                      ),
-                    ),
+                  content: ChatText(
+                    text: 'message reported',
+                    size: 15,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).colorScheme.tertiary,
                   ),
                 ),
               );
             },
-            child: Text(
-              'yes, report',
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  color: Theme.of(context).colorScheme.surface,
-                ),
-              ),
+            child: ChatText(
+              text: 'yes, report',
+              size: 15,
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).colorScheme.surface,
             ),
           )
         ],
@@ -182,30 +157,21 @@ class ChatBubble extends StatelessWidget {
           crossAxisAlignment:
               isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
           children: [
-            Text(
-              data["message"],
-              textAlign: isCurrentUser ? TextAlign.end : TextAlign.start,
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  color: Theme.of(context).colorScheme.tertiary,
-                ),
-              ),
+            ChatText(
+              text: data["message"],
+              size: 15,
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).colorScheme.tertiary,
             ),
             const SizedBox(height: 2.0),
-            Text(
-              _dateHelper.formatDatetime(data["timestamp"].toDate()),
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w300,
-                  color: isCurrentUser
-                      ? Theme.of(context).colorScheme.tertiaryContainer
-                      : Theme.of(context).colorScheme.inversePrimary,
-                ),
-              ),
-            )
+            ChatText(
+              text: _dateHelper.formatDatetime(data["timestamp"].toDate()),
+              size: 10,
+              fontWeight: FontWeight.w300,
+              color: isCurrentUser
+                  ? Theme.of(context).colorScheme.tertiaryContainer
+                  : Theme.of(context).colorScheme.inversePrimary,
+            ),
           ],
         ),
       ),

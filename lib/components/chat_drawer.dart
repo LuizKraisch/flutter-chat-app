@@ -1,8 +1,8 @@
+import 'package:chat_app/components/chat_text.dart';
 import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/pages/home_page.dart';
 import 'package:chat_app/pages/settings_page.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ChatDrawer extends StatelessWidget {
   const ChatDrawer({super.key});
@@ -43,15 +43,11 @@ class ChatDrawer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 25.0),
                 child: ListTile(
-                  title: Text(
-                    "chats",
-                    style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).colorScheme.tertiary,
-                      ),
-                    ),
+                  title: ChatText(
+                    text: 'chats',
+                    size: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).colorScheme.tertiary,
                   ),
                   leading: Icon(
                     Icons.forum,
@@ -71,15 +67,11 @@ class ChatDrawer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 25.0),
                 child: ListTile(
-                  title: Text(
-                    "settings",
-                    style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).colorScheme.tertiary,
-                      ),
-                    ),
+                  title: ChatText(
+                    text: 'settings',
+                    size: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).colorScheme.tertiary,
                   ),
                   leading: Icon(
                     Icons.settings,
@@ -101,15 +93,11 @@ class ChatDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 25.0, bottom: 25.0),
             child: ListTile(
-              title: Text(
-                "logout",
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Theme.of(context).colorScheme.tertiary,
-                  ),
-                ),
+              title: ChatText(
+                text: 'logout',
+                size: 18,
+                fontWeight: FontWeight.w500,
+                color: Theme.of(context).colorScheme.tertiary,
               ),
               leading: Icon(
                 Icons.logout,

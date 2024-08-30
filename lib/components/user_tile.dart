@@ -1,16 +1,17 @@
+import 'package:chat_app/components/chat_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class UserTile extends StatelessWidget {
   final String userName;
   final String userEmail;
   final void Function()? onTap;
 
-  const UserTile(
-      {super.key,
-      required this.userName,
-      required this.userEmail,
-      required this.onTap});
+  const UserTile({
+    super.key,
+    required this.userName,
+    required this.userEmail,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,34 +26,28 @@ class UserTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15.0,
+              vertical: 8.0,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      userName,
-                      style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          color: Theme.of(context).colorScheme.tertiary,
-                        ),
-                      ),
+                    ChatText(
+                      text: userName,
+                      size: 15,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).colorScheme.tertiary,
                     ),
                     const SizedBox(height: 1.0),
-                    Text(
-                      userEmail,
-                      style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w500,
-                          color: Theme.of(context).colorScheme.inversePrimary,
-                        ),
-                      ),
+                    ChatText(
+                      text: userEmail,
+                      size: 10,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).colorScheme.inversePrimary,
                     ),
                   ],
                 ),
