@@ -32,23 +32,72 @@ class HomePage extends StatelessWidget {
 
   Widget _buildUserList() {
     return StreamBuilder(
-      stream: _chatService.getUserStream(),
+      stream: _chatService.getUserStreamExcludingBlocked(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return ChatText(
-            text: 'error',
-            size: 18,
-            fontWeight: FontWeight.w600,
-            color: Theme.of(context).colorScheme.primary,
+          return Center(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Icon(
+                Icons.error,
+                color: Theme.of(context).colorScheme.tertiary,
+                size: 75,
+              ),
+              const SizedBox(height: 5.0),
+              ChatText(
+                text: 'an error ocurred',
+                size: 18,
+                fontWeight: FontWeight.w700,
+                color: Theme.of(context).colorScheme.tertiary,
+              ),
+              const SizedBox(height: 2.0),
+              ChatText(
+                text: "sorry for that. please, try again",
+                size: 15,
+                fontWeight: FontWeight.w500,
+                color: Theme.of(context).colorScheme.tertiary,
+              )
+            ]),
           );
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return ChatText(
-            text: 'loading...',
-            size: 18,
-            fontWeight: FontWeight.w600,
-            color: Theme.of(context).colorScheme.primary,
+          return const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+              ],
+            ),
+          );
+        }
+
+        if (snapshot.data!.isEmpty) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.mood_bad,
+                  color: Theme.of(context).colorScheme.tertiary,
+                  size: 75,
+                ),
+                const SizedBox(height: 5.0),
+                ChatText(
+                  text: 'no users found',
+                  size: 18,
+                  fontWeight: FontWeight.w700,
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
+                const SizedBox(height: 2.0),
+                ChatText(
+                  text: "don't be shy... start by adding some users!",
+                  size: 15,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.tertiary,
+                )
+              ],
+            ),
           );
         }
 

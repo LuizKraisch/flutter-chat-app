@@ -20,14 +20,14 @@ class ChatService extends ChangeNotifier {
     final currentUser = _auth.currentUser;
 
     return _firestore
-        .collection('Users')
+        .collection('users')
         .doc(currentUser!.uid)
-        .collection('BlockedUsers')
+        .collection('blocked_users')
         .snapshots()
         .asyncMap((snapshot) async {
       final blockedUsersIds = snapshot.docs.map((doc) => doc.id).toList();
 
-      final usersSnapshot = await _firestore.collection('Users').get();
+      final usersSnapshot = await _firestore.collection('users').get();
 
       return usersSnapshot.docs
           .where((doc) =>
@@ -84,15 +84,15 @@ class ChatService extends ChangeNotifier {
       'timestamp': FieldValue.serverTimestamp(),
     };
 
-    await _firestore.collection('Reports').add(report);
+    await _firestore.collection('reports').add(report);
   }
 
   Future<void> blockUser(String userId) async {
     final currentUser = _auth.currentUser;
     await _firestore
-        .collection('Users')
+        .collection('users')
         .doc(currentUser!.uid)
-        .collection('BlockedUsers')
+        .collection('blocked_users')
         .doc(userId)
         .set({});
     notifyListeners();
@@ -101,9 +101,9 @@ class ChatService extends ChangeNotifier {
   Future<void> unblockUser(String userId) async {
     final currentUser = _auth.currentUser;
     await _firestore
-        .collection('Users')
+        .collection('users')
         .doc(currentUser!.uid)
-        .collection('BlockedUsers')
+        .collection('blocked_users')
         .doc(userId)
         .delete();
     notifyListeners();
@@ -111,15 +111,15 @@ class ChatService extends ChangeNotifier {
 
   Stream<List<Map<String, dynamic>>> getBlockedUsersStream(String userId) {
     return _firestore
-        .collection('Users')
+        .collection('users')
         .doc(userId)
-        .collection('BlockedUsers')
+        .collection('blocked_users')
         .snapshots()
         .asyncMap((snapshot) async {
       final blockedUsersIds = snapshot.docs.map((doc) => doc.id).toList();
 
       final userDocs = await Future.wait(blockedUsersIds
-          .map((id) => _firestore.collection('Users').doc(id).get()));
+          .map((id) => _firestore.collection('users').doc(id).get()));
 
       return userDocs.map((doc) => doc.data() as Map<String, dynamic>).toList();
     });

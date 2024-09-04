@@ -53,7 +53,10 @@ class ChatBubble extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   color: Theme.of(context).colorScheme.tertiary,
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pop(context);
+                  _blockuser(context, userId);
+                },
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -125,6 +128,60 @@ class ChatBubble extends StatelessWidget {
             },
             child: ChatText(
               text: 'yes, report',
+              size: 15,
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).colorScheme.surface,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  void _blockuser(BuildContext context, String userId) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: ChatText(
+          text: 'block user',
+          size: 15,
+          fontWeight: FontWeight.w500,
+          color: Theme.of(context).colorScheme.surface,
+        ),
+        content: ChatText(
+          text: 'are you sure you want to block this user?',
+          size: 15,
+          fontWeight: FontWeight.w500,
+          color: Theme.of(context).colorScheme.surface,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: ChatText(
+              text: 'no',
+              size: 15,
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).colorScheme.surface,
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              ChatService().blockUser(userId);
+              Navigator.pop(context); // FYI: Dismiss the dialog
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: ChatText(
+                    text: 'user blocked',
+                    size: 15,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
+                ),
+              );
+              Navigator.pop(context); // FYI: Dismiss the page
+            },
+            child: ChatText(
+              text: 'yes, block',
               size: 15,
               fontWeight: FontWeight.w500,
               color: Theme.of(context).colorScheme.surface,
